@@ -1,30 +1,23 @@
-# BootImgTool
-A Tool for unpack/pack android boot.img
+1.拉取代码，编译
 
-Combined these two projects:
-
-https://github.com/pbatard/bootimg-tools
-
-https://github.com/sophiehuiberts/Bootimg-scripts
-
-Add some usefull script for convenience
-
-# Usage
-
-1. compile
-```
+cd BootImgTool
+chmod 755 build.sh
 ./build.sh
-```
 
-2. unpack
-```
-bin/unpack-bootimg.sh path/of/boot.img
-```
 
-3. repack
-```
-bin/repack-bootimg.sh kernel ramdisk-dir out-file
-```
+2.使用tmp下的boot.img练手，解包：
+./bin/unpack-bootimg.sh .tmp/boot.img
 
-# Article
-https://www.jianshu.com/p/aaa2fd8bd2b5
+此时tmp如下：
+ll tmp
+total 34944
+-rw-r--r--   1 andr0day  staff   8.5M  4 16 19:14 boot.img
+-rw-r--r--   1 andr0day  staff   8.0M  4 16 19:30 boot.img-kernel.gz //替换kernel时，覆盖此文件
+drwxr-xr-x  25 andr0day  staff   800B  4 16 19:30 boot.img-ramdisk //进入此目录修改配置
+-rw-r--r--   1 andr0day  staff   488K  4 16 19:30 boot.img-ramdisk.cpio.gz
+
+
+3.修改内容略....
+
+4.重新打包：
+./bin/repack-bootimg.sh ./tmp/boot.img-kernel.gz ./tmp/boot.img-ramdisk ./myboot.img

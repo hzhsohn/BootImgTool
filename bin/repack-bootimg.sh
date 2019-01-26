@@ -1,3 +1,3 @@
 #!/bin/bash
 
-repack-bootimg.pl $1 $2 $3
+./bin/repack-bootimg.pl $1 $2 $3
